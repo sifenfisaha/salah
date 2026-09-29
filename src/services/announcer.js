@@ -259,7 +259,9 @@ export const Announcer = GObject.registerClass({
     // resume handles everything that came due, marking the stale ones as
     // missed. Listening for the resume makes that first tick immediate rather
     // than up to a second late, and keeps the countdown from showing a stale
-    // number for that second.
+    // number for that second. Inside a Flatpak the system bus is filtered
+    // and the signal never arrives: the manifest does not ask for logind just
+    // to save that second, and the tick covers it there.
     _watchSleep() {
         try {
             this._sleepSubscription = Gio.DBus.system.signal_subscribe(

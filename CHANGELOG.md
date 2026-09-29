@@ -6,6 +6,12 @@ All notable changes to this project are recorded here. The format follows
 
 ## [Unreleased]
 
+### Changed
+
+- The Flatpak no longer asks to talk to logind on the system bus. It was
+  only used to notice a resume from suspend a second sooner, which the
+  once-a-second tick covers.
+
 ## [1.0.1] - 2026-09-29
 
 ### Fixed
