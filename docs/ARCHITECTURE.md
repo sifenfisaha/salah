@@ -136,7 +136,8 @@ is wrong.
 - **Actions from the menu, the notifications and `gapplication` all go
   through the application**, and a notification can arrive after the window
   is gone, so actions never assume a window exists; `_ensureWindow()` creates
-  one when needed.
+  one when needed and presents it, because a dialog opened on a window that
+  is not shown is invisible too.
 - **`Gio._promisify` must name the finish function** for the
   `_bytes`/`_finish` pairs whose names do not match, such as
   `replace_contents_bytes_async` and `replace_contents_finish`.

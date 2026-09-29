@@ -89,7 +89,7 @@ class SalahApplication extends Adw.Application {
     }
 
     vfunc_activate() {
-        this._ensureWindow().present();
+        this._ensureWindow();
     }
 
     vfunc_shutdown() {
@@ -97,8 +97,13 @@ class SalahApplication extends Adw.Application {
         super.vfunc_shutdown();
     }
 
+    // The window, shown. Actions from the menu, the desktop entry or
+    // `gapplication` can arrive while the app runs with no window, and a
+    // dialog presented on a window nobody can see is the same as no dialog.
     _ensureWindow() {
-        return this.active_window ?? new SalahWindow({ application: this });
+        const window = this.active_window ?? new SalahWindow({ application: this });
+        window.present();
+        return window;
     }
 
     _loadStyle() {
