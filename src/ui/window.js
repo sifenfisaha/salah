@@ -36,6 +36,15 @@ function phraseRemaining(ms) {
     return format(_('in %s'), parts.join(' '));
 }
 
+// With "Count Seconds" on, a clock that visibly moves: H:MM:SS, and M:SS
+// inside the last hour, which is what the once-a-second tick is for.
+function countdownRemaining(ms) {
+    if (ms <= 0)
+        return _('It is time');
+    // Translators: %s is a countdown, e.g. "in 1:38:07"
+    return format(_('in %s'), Day.formatCountdown(ms, true));
+}
+
 export const SalahWindow = GObject.registerClass({
     GTypeName: 'SalahWindow',
     Template: `resource://${RESOURCE_BASE}/ui/window.ui`,
@@ -151,7 +160,14 @@ export const SalahWindow = GObject.registerClass({
             : '';
         this._next_time.label = Day.formatTime(next?.date, config.clockFormat);
         this._next_arabic.label = next ? Day.prayerLabelAr(next.key) : '';
-        this._remaining.label = phraseRemaining(day.remainingMs);
+        this._remaining.label = config.showSeconds
+            ? countdownRemaining(day.remainingMs)
+            : phraseRemaining(day.remainingMs);
+        // Tabular figures, so the running clock does not wobble as digits change.
+        if (config.showSeconds)
+            this._remaining.add_css_class('numeric');
+        else
+            this._remaining.remove_css_class('numeric');
 
         for (const period of PERIODS)
             this._hero_card.remove_css_class(`period-${period}`);
