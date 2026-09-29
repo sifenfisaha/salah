@@ -66,8 +66,28 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
+      # Screenshots are mirrored the way Flathub's builders do it, so the
+      # linter below sees the same catalogue data Flathub would.
       - uses: flatpak/flatpak-github-actions/flatpak-builder@v6
         with:
           bundle: salah.flatpak
           manifest-path: io.github.sifenfisaha.Salah.json
           cache-key: flatpak-builder-${{ github.sha }}
+          mirror-screenshots-url: https://dl.flathub.org/media
+          run-tests: true
+
+      # Flathub's linter, which the image already carries, on the app's data
+      # and on the build output: the checks a Flathub submission is held to.
+      # The manifest check is not run here, because this manifest builds the
+      # checkout; a submission manifest pins a release and is written by hand.
+      - name: Flathub linter, AppStream
+        run: flatpak-builder-lint appstream flatpak_app/files/share/metainfo/io.github.sifenfisaha.Salah.metainfo.xml
+
+      - name: Flathub linter, build output
+        run: |
+          if [ -d flatpak_app/files/share/app-info/media ]; then
+            ostree commit --repo=repo --canonical-permissions --branch=screenshots/x86_64 flatpak_app/files/share/app-info/media
+          else
+            echo "No mirrored media directory; the screenshot checks will say so."
+          fi
+          flatpak-builder-lint repo repo
