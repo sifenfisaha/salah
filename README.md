@@ -35,17 +35,34 @@ flatpak run io.github.sifenfisaha.Salah
 ### From source
 
 Salah is a GJS application, so there is nothing to compile; meson installs
-the scripts, the resources, the schema and the icons.
+the scripts, the resources, the schema and the icons. At run time it needs
+these libraries and, on Debian and Ubuntu, their introspection data:
 
 | Needs | Version | Debian / Ubuntu | Fedora | Arch |
 | --- | --- | --- | --- | --- |
 | gjs | ≥ 1.76 | `gjs` | `gjs` | `gjs` |
-| GTK | ≥ 4.14 | `libgtk-4-1` | `gtk4` | `gtk4` |
-| libadwaita | ≥ 1.8 | `libadwaita-1-0` | `libadwaita` | `libadwaita` |
-| GStreamer + base and good plugins | ≥ 1.20 | `gstreamer1.0-plugins-base gstreamer1.0-plugins-good` | `gstreamer1-plugins-base gstreamer1-plugins-good` | `gst-plugins-base gst-plugins-good` |
-| libsoup | 3 | `libsoup-3.0-0` | `libsoup3` | `libsoup3` |
-| libportal | optional | `libportal-gtk4-1` | `libportal-gtk4` | `libportal-gtk4` |
-| meson, ninja, gettext, desktop-file-utils, appstream | build only | | | |
+| GTK | ≥ 4.14 | `gir1.2-gtk-4.0` | `gtk4` | `gtk4` |
+| libadwaita | ≥ 1.8 | `gir1.2-adw-1` | `libadwaita` | `libadwaita` |
+| GStreamer + base and good plugins | ≥ 1.20 | `gir1.2-gstreamer-1.0 gstreamer1.0-plugins-base gstreamer1.0-plugins-good` | `gstreamer1-plugins-base gstreamer1-plugins-good` | `gst-plugins-base gst-plugins-good` |
+| libsoup | 3 | `gir1.2-soup-3.0` | `libsoup3` | `libsoup3` |
+| libportal | optional | `gir1.2-xdp-1.0 gir1.2-xdpgtk4-1.0` | `libportal-gtk4` | `libportal-gtk4` |
+
+To build, meson checks for the same libraries with pkg-config, so their
+development packages have to be installed too, along with meson itself,
+ninja, gettext, desktop-file-utils and appstream:
+
+```bash
+# Debian / Ubuntu
+sudo apt install meson ninja-build gettext desktop-file-utils appstream \
+  libgjs-dev libgtk-4-dev libadwaita-1-dev libgstreamer1.0-dev libsoup-3.0-dev libportal-dev
+# Fedora
+sudo dnf install meson ninja-build gettext desktop-file-utils appstream \
+  gjs-devel gtk4-devel libadwaita-devel gstreamer1-devel libsoup3-devel libportal-devel
+# Arch
+sudo pacman -S meson ninja gettext desktop-file-utils appstream
+```
+
+Then:
 
 ```bash
 meson setup _build --prefix=/usr
