@@ -10,9 +10,9 @@ jobs:
     name: Engine tests and lint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: lts/*
 
@@ -40,7 +40,7 @@ jobs:
             libsoup3-devel libportal-devel glib2-devel \
             desktop-file-utils appstream
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       # The desktop file, the AppStream data and the schema are validated as
       # meson tests, and the engine tests run again through meson so the
@@ -64,9 +64,9 @@ jobs:
       image: ghcr.io/flathub-infra/flatpak-github-actions:gnome-49
       options: --privileged
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: flathub-infra/flatpak-github-actions/flatpak-builder@v6
+      - uses: flatpak/flatpak-github-actions/flatpak-builder@v6
         with:
           bundle: salah.flatpak
           manifest-path: io.github.sifenfisaha.Salah.json
