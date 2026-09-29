@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface domain="io.github.sifenfisaha.Salah">
+  <requires lib="gtk" version="4.14"/>
+  <requires lib="libadwaita" version="1.6"/>
+  <template class="SalahLocationDialog" parent="AdwDialog">
+    <property name="title" translatable="yes">Location</property>
+    <property name="content-width">440</property>
+    <property name="content-height">620</property>
+    <property name="focus-widget">search</property>
+    <property name="child">
+      <object class="AdwToolbarView">
+        <child type="top">
+          <object class="AdwHeaderBar"/>
+        </child>
+        <property name="content">
+          <object class="GtkBox">
+            <property name="orientation">vertical</property>
+            <property name="spacing">12</property>
+            <property name="margin-start">12</property>
+            <property name="margin-end">12</property>
+            <property name="margin-bottom">12</property>
+            <child>
+              <object class="GtkSearchEntry" id="search">
+                <property name="placeholder-text" translatable="yes">Search for a city</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkStack" id="results_stack">
+                <property name="vexpand">true</property>
+                <property name="vhomogeneous">false</property>
+                <property name="transition-type">crossfade</property>
+                <child>
+                  <object class="GtkStackPage">
+                    <property name="name">hint</property>
+                    <property name="child">
+                      <object class="GtkLabel">
+                        <property name="label" translatable="yes">Type a city name, or use one of the options below.</property>
+                        <property name="wrap">true</property>
+                        <property name="justify">center</property>
+                        <property name="valign">start</property>
+                        <property name="margin-top">12</property>
+                        <style>
+                          <class name="dim-label"/>
+                        </style>
+                      </object>
+                    </property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkStackPage">
+                    <property name="name">busy</property>
+                    <property name="child">
+                      <object class="GtkBox">
+                        <property name="halign">center</property>
+                        <property name="valign">start</property>
+                        <property name="spacing">8</property>
+                        <property name="margin-top">12</property>
+                        <child>
+                          <object class="AdwSpinner"/>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="busy_label">
+                            <property name="label" translatable="yes">Searching…</property>
+                            <style>
+                              <class name="dim-label"/>
+                            </style>
+                          </object>
+                        </child>
+                      </object>
+                    </property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkStackPage">
+                    <property name="name">results</property>
+                    <property name="child">
+                      <object class="GtkScrolledWindow">
+                        <property name="hscrollbar-policy">never</property>
+                        <property name="propagate-natural-height">true</property>
+                        <property name="child">
+                          <object class="GtkListBox" id="results">
+                            <property name="selection-mode">none</property>
+                            <property name="valign">start</property>
+                            <style>
+                              <class name="boxed-list"/>
+                            </style>
+                          </object>
+                        </property>
+                      </object>
+                    </property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkStackPage">
+                    <property name="name">message</property>
+                    <property name="child">
+                      <object class="GtkLabel" id="message_label">
+                        <property name="wrap">true</property>
+                        <property name="justify">center</property>
+                        <property name="valign">start</property>
+                        <property name="margin-top">12</property>
+                        <style>
+                          <class name="dim-label"/>
+                        </style>
+                      </object>
+                    </property>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkListBox">
+                <property name="selection-mode">none</property>
+                <property name="valign">end</property>
+                <style>
+                  <class name="boxed-list"/>
+                </style>
+                <child>
+                  <object class="AdwButtonRow" id="system_row">
+                    <property name="title" translatable="yes">Use System Location</property>
+                    <property name="start-icon-name">find-location-symbolic</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwButtonRow" id="ip_row">
+                    <property name="title" translatable="yes">Look Up by IP Address</property>
+                    <property name="start-icon-name">network-wireless-symbolic</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="label" translatable="yes">The city search asks Open-Meteo and the IP lookup asks ipapi.co. Nothing else leaves this device; the times themselves are computed here.</property>
+                <property name="wrap">true</property>
+                <property name="xalign">0</property>
+                <style>
+                  <class name="caption"/>
+                  <class name="dim-label"/>
+                </style>
+              </object>
+            </child>
+          </object>
+        </property>
+      </object>
+    </property>
+  </template>
+</interface>

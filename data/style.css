@@ -1,0 +1,100 @@
+/* The hero card: the ring and the next prayer. */
+.hero {
+  padding: 22px 24px;
+  border-radius: 18px;
+}
+
+.hero-time {
+  font-size: 2.9em;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.hero-arabic {
+  font-size: 1.4em;
+  opacity: 0.65;
+  margin-bottom: 6px;
+}
+
+.hero-remaining {
+  font-size: 1.05em;
+  font-weight: 700;
+}
+
+/* A tint for the part of the day we are in, faint enough to sit on the
+   light card and the dark one alike. */
+.hero.period-dawn {
+  background-image: linear-gradient(135deg, alpha(#ed333b, 0.16), alpha(#f8e45c, 0.10) 55%, transparent 90%);
+}
+
+.hero.period-morning {
+  background-image: linear-gradient(135deg, alpha(#f8e45c, 0.24), alpha(#99c1f1, 0.12) 60%, transparent 90%);
+}
+
+.hero.period-day {
+  background-image: linear-gradient(135deg, alpha(#62a0ea, 0.20), alpha(#8ff0a4, 0.10) 60%, transparent 90%);
+}
+
+.hero.period-afternoon {
+  background-image: linear-gradient(135deg, alpha(#ffa348, 0.24), alpha(#f8e45c, 0.10) 60%, transparent 90%);
+}
+
+.hero.period-dusk {
+  background-image: linear-gradient(135deg, alpha(#c061cb, 0.20), alpha(#ff7800, 0.14) 60%, transparent 90%);
+}
+
+.hero.period-night {
+  background-image: linear-gradient(135deg, alpha(#1c71d8, 0.22), alpha(#613583, 0.16) 60%, transparent 90%);
+}
+
+/* The Hijri date under the hero. */
+.hijri {
+  margin-top: -6px;
+}
+
+/* Prayer rows. */
+.prayers row.past {
+  opacity: 0.5;
+}
+
+.prayers row.next {
+  background-color: alpha(@accent_bg_color, 0.08);
+}
+
+.prayers row.next .title {
+  font-weight: 700;
+}
+
+.prayers row.next .time,
+.prayers row.next .prayer-icon {
+  color: @accent_color;
+}
+
+.prayers row.current {
+  box-shadow: inset 3px 0 0 0 @accent_bg_color;
+}
+
+.prayers .time {
+  font-weight: 700;
+  font-size: 1.15em;
+  margin-right: 2px;
+}
+
+.prayers .bell.off {
+  opacity: 0.45;
+}
+
+/* The derived-time tiles. */
+.tile {
+  padding: 10px 12px;
+  border-radius: 12px;
+}
+
+.tile-time {
+  font-weight: 700;
+  font-size: 1.2em;
+}
+
+.footer-button {
+  padding: 6px 10px;
+}

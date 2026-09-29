@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface domain="io.github.sifenfisaha.Salah">
+  <requires lib="gtk" version="4.14"/>
+  <requires lib="libadwaita" version="1.6"/>
+  <template class="SalahPreferences" parent="AdwPreferencesDialog">
+    <property name="title" translatable="yes">Preferences</property>
+    <property name="search-enabled">true</property>
+
+    <!-- ============================================================ Times -->
+    <child>
+      <object class="AdwPreferencesPage">
+        <property name="name">times</property>
+        <property name="title" translatable="yes">Times</property>
+        <property name="icon-name">salah-dhuhr-symbolic</property>
+
+        <child>
+          <object class="AdwPreferencesGroup">
+            <property name="title" translatable="yes">Location</property>
+            <child>
+              <object class="AdwActionRow" id="location_row">
+                <property name="title" translatable="yes">Location</property>
+                <property name="activatable">true</property>
+                <child type="suffix">
+                  <object class="GtkImage">
+                    <property name="icon-name">go-next-symbolic</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+
+        <child>
+          <object class="AdwPreferencesGroup">
+            <property name="title" translatable="yes">Calculation</property>
+            <child>
+              <object class="AdwComboRow" id="method_row">
+                <property name="title" translatable="yes">Method</property>
+              </object>
+            </child>
+            <child>
+              <object class="AdwComboRow" id="madhab_row">
+                <property name="title" translatable="yes">Asr</property>
+              </object>
+            </child>
+            <child>
+              <object class="AdwComboRow" id="high_lat_row">
+                <property name="title" translatable="yes">High Latitudes</property>
+                <property name="subtitle" translatable="yes">Only matters far from the equator</property>
+              </object>
+            </child>
+          </object>
+        </child>
+
+        <child>
+          <object class="AdwPreferencesGroup">
+            <property name="title" translatable="yes">Fine Tuning</property>
+            <property name="description" translatable="yes">Nudge an individual prayer, in minutes, to match your mosque's timetable. The adhan follows the nudged time.</property>
+          <child>
+            <object class="AdwSpinRow" id="tune_fajr">
+              <property name="title" translatable="yes">Fajr</property>
+              <property name="adjustment">
+                <object class="GtkAdjustment">
+                  <property name="lower">-60</property>
+                  <property name="upper">60</property>
+                  <property name="step-increment">1</property>
+                  <property name="page-increment">5</property>
+                </object>
+              </property>
+            </object>
+          </child>
+          <child>
+            <object class="AdwSpinRow" id="tune_sunrise">
+              <property name="title" translatable="yes">Sunrise</property>
+              <property name="adjustment">
+                <object class="GtkAdjustment">
+                  <property name="lower">-60</property>
+                  <property name="upper">60</property>
+                  <property name="step-increment">1</property>
+                  <property name="page-increment">5</property>
+                </object>
+              </property>
+            </object>
+          </child>
+          <child>
+            <object class="AdwSpinRow" id="tune_dhuhr">
+              <property name="title" translatable="yes">Dhuhr</property>
+              <property name="adjustment">
+                <object class="GtkAdjustment">
+                  <property name="lower">-60</property>
+                  <property name="upper">60</property>
+                  <property name="step-increment">1</property>
+                  <property name="page-increment">5</property>
+                </object>
+              </property>
+            </object>
+          </child>
+          <child>
+            <object class="AdwSpinRow" id="tune_asr">
+              <property name="title" translatable="yes">Asr</property>
+              <property name="adjustment">
+                <object class="GtkAdjustment">
+                  <property name="lower">-60</property>
+                  <property name="upper">60</property>
+                  <property name="step-increment">1</property>
+                  <property name="page-increment">5</property>
+                </object>
+              </property>
+            </object>
+          </child>
+          <child>
+            <object class="AdwSpinRow" id="tune_maghrib">
+              <property name="title" translatable="yes">Maghrib</property>
+              <property name="adjustment">
+                <object class="GtkAdjustment">
+                  <property name="lower">-60</property>
+                  <property name="upper">60</property>
+                  <property name="step-increment">1</property>
+                  <property name="page-increment">5</property>
+                </object>
+              </property>
+            </object>
+          </child>
+          <child>
+            <object class="AdwSpinRow" id="tune_isha">
+              <property name="title" translatable="yes">Isha</property>
+              <property name="adjustment">
+                <object class="GtkAdjustment">
+                  <property name="lower">-60</property>
+                  <property name="upper">60</property>
+                  <property name="step-increment">1</property>
+                  <property name="page-increment">5</property>
+                </object>
+              </property>
+            </object>
+          </child>
+          </object>
+        </child>
+      </object>
+    </child>
+
+    <!-- ============================================================ Adhan -->
+    <child>
+      <object class="AdwPreferencesPage">
+        <property name="name">adhan</property>
+        <property name="title" translatable="yes">Adhan</property>
+        <property name="icon-name">salah-bell-symbolic</property>
+
+        <child>
+          <object class="AdwPreferencesGroup">
+            <property name="title" translatable="yes">Notifications</property>
+            <child>
+              <object class="AdwSwitchRow" id="notify_row">
+                <property name="title" translatable="yes">Notification at Each Prayer</property>
+              </object>
+            </child>
+            <child>
+              <object class="AdwSpinRow" id="reminder_row">
+                <property name="title" translatable="yes">Reminder Before</property>
+                <property name="subtitle" translatable="yes">Minutes before a prayer to send a heads-up; zero turns it off</property>
+                <property name="adjustment">
+                  <object class="GtkAdjustment">
+                    <property name="lower">0</property>
+                    <property name="upper">60</property>
+                    <property name="step-increment">5</property>
+                    <property name="page-increment">10</property>
+                  </object>
+                </property>
+              </object>
+            </child>
+          </object>
+        </child>
+
+        <child>
+          <object class="AdwPreferencesGroup">
+            <property name="title" translatable="yes">Adhan</property>
+            <child>
+              <object class="AdwSwitchRow" id="play_row">
+                <property name="title" translatable="yes">Play the Adhan</property>
+              </object>
+            </child>
+            <child>
+              <object class="AdwComboRow" id="voice_row">
+                <property name="title" translatable="yes">Voice</property>
+              </object>
+            </child>
+            <child>
+              <object class="AdwActionRow" id="download_row">
+                <property name="title" translatable="yes">Download</property>
+                <child type="suffix">
+                  <object class="AdwSpinner" id="download_spinner">
+                    <property name="visible">false</property>
+                    <property name="valign">center</property>
+                  </object>
+                </child>
+                <child type="suffix">
+                  <object class="GtkButton" id="retry_button">
+                    <property name="label" translatable="yes">Try Again</property>
+                    <property name="valign">center</property>
+                    <property name="visible">false</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="AdwActionRow" id="custom_row">
+                <property name="title" translatable="yes">File</property>
+                <property name="activatable">true</property>
+                <property name="visible">false</property>
+                <child type="suffix">
+                  <object class="GtkImage">
+                    <property name="icon-name">document-open-symbolic</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="AdwActionRow" id="volume_row">
+                <property name="title" translatable="yes">Volume</property>
+                <child type="suffix">
+                  <object class="GtkScale" id="volume_scale">
+                    <property name="valign">center</property>
+                    <property name="hexpand">true</property>
+                    <property name="width-request">150</property>
+                    <property name="draw-value">false</property>
+                    <property name="round-digits">0</property>
+                    <property name="adjustment">
+                      <object class="GtkAdjustment" id="volume_adjustment">
+                        <property name="lower">0</property>
+                        <property name="upper">150</property>
+                        <property name="step-increment">5</property>
+                        <property name="page-increment">10</property>
+                      </object>
+                    </property>
+                    <marks>
+                      <mark value="100" position="bottom"/>
+                    </marks>
+                  </object>
+                </child>
+                <child type="suffix">
+                  <object class="GtkLabel" id="volume_label">
+                    <property name="width-chars">6</property>
+                    <property name="xalign">1</property>
+                    <style>
+                      <class name="numeric"/>
+                    </style>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="AdwButtonRow" id="test_row">
+                <property name="title" translatable="yes">Play the Adhan Now</property>
+                <property name="start-icon-name">media-playback-start-symbolic</property>
+              </object>
+            </child>
+          </object>
+        </child>
+
+        <child>
+          <object class="AdwPreferencesGroup">
+            <property name="title" translatable="yes">Play For</property>
+            <property name="description" translatable="yes">Silence a single prayer — Fajr on a work laptop, say — without silencing the rest. The bell on each row in the window does the same.</property>
+          <child>
+            <object class="AdwSwitchRow" id="adhan_fajr">
+              <property name="title" translatable="yes">Fajr</property>
+            </object>
+          </child>
+          <child>
+            <object class="AdwSwitchRow" id="adhan_dhuhr">
+              <property name="title" translatable="yes">Dhuhr</property>
+            </object>
+          </child>
+          <child>
+            <object class="AdwSwitchRow" id="adhan_asr">
+              <property name="title" translatable="yes">Asr</property>
+            </object>
+          </child>
+          <child>
+            <object class="AdwSwitchRow" id="adhan_maghrib">
+              <property name="title" translatable="yes">Maghrib</property>
+            </object>
+          </child>
+          <child>
+            <object class="AdwSwitchRow" id="adhan_isha">
+              <property name="title" translatable="yes">Isha</property>
+            </object>
+          </child>
+          </object>
+        </child>
+      </object>
+    </child>
+
+    <!-- ============================================================ General -->
+    <child>
+      <object class="AdwPreferencesPage">
+        <property name="name">general</property>
+        <property name="title" translatable="yes">General</property>
+        <property name="icon-name">emblem-system-symbolic</property>
+
+        <child>
+          <object class="AdwPreferencesGroup">
+            <property name="title" translatable="yes">Hijri Calendar</property>
+            <child>
+              <object class="AdwSwitchRow" id="hijri_sync_row">
+                <property name="title" translatable="yes">Correct Against Umm al-Qura</property>
+                <property name="subtitle" translatable="yes">Checks once a day and remembers the correction, so the date stays right offline</property>
+              </object>
+            </child>
+            <child>
+              <object class="AdwSpinRow" id="hijri_offset_row">
+                <property name="title" translatable="yes">Shift</property>
+                <property name="subtitle" translatable="yes">Months begin on a local sighting, so mosques in one city can differ by a day. Shifts the date shown, in days, without touching prayer times.</property>
+                <property name="adjustment">
+                  <object class="GtkAdjustment">
+                    <property name="lower">-2</property>
+                    <property name="upper">2</property>
+                    <property name="step-increment">1</property>
+                    <property name="page-increment">1</property>
+                  </object>
+                </property>
+              </object>
+            </child>
+          </object>
+        </child>
+
+        <child>
+          <object class="AdwPreferencesGroup">
+            <property name="title" translatable="yes">Display</property>
+            <child>
+              <object class="AdwComboRow" id="clock_row">
+                <property name="title" translatable="yes">Clock</property>
+              </object>
+            </child>
+            <child>
+              <object class="AdwSwitchRow" id="seconds_row">
+                <property name="title" translatable="yes">Count Seconds</property>
+                <property name="subtitle" translatable="yes">Show seconds in the countdown</property>
+              </object>
+            </child>
+          </object>
+        </child>
+
+        <child>
+          <object class="AdwPreferencesGroup">
+            <property name="title" translatable="yes">Background</property>
+            <child>
+              <object class="AdwSwitchRow" id="background_row">
+                <property name="title" translatable="yes">Run in the Background</property>
+                <property name="subtitle" translatable="yes">Keep counting down and call the adhan with the window closed, and start at login</property>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+</interface>

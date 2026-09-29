@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface domain="io.github.sifenfisaha.Salah">
+  <requires lib="libadwaita" version="1.8"/>
+  <object class="AdwShortcutsDialog" id="shortcuts_dialog">
+    <child>
+      <object class="AdwShortcutsSection">
+        <property name="title" translatable="yes">General</property>
+        <child>
+          <object class="AdwShortcutsItem">
+            <property name="title" translatable="yes">Location</property>
+            <property name="accelerator">&lt;Control&gt;l</property>
+          </object>
+        </child>
+        <child>
+          <object class="AdwShortcutsItem">
+            <property name="title" translatable="yes">Preferences</property>
+            <property name="accelerator">&lt;Control&gt;comma</property>
+          </object>
+        </child>
+        <child>
+          <object class="AdwShortcutsItem">
+            <property name="title" translatable="yes">Keyboard Shortcuts</property>
+            <property name="accelerator">&lt;Control&gt;question</property>
+          </object>
+        </child>
+        <child>
+          <object class="AdwShortcutsItem">
+            <property name="title" translatable="yes">Close Window</property>
+            <property name="accelerator">&lt;Control&gt;w</property>
+          </object>
+        </child>
+        <child>
+          <object class="AdwShortcutsItem">
+            <property name="title" translatable="yes">Quit</property>
+            <property name="accelerator">&lt;Control&gt;q</property>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="AdwShortcutsSection">
+        <property name="title" translatable="yes">Adhan</property>
+        <child>
+          <object class="AdwShortcutsItem">
+            <property name="title" translatable="yes">Play the Adhan</property>
+            <property name="accelerator">&lt;Control&gt;p</property>
+          </object>
+        </child>
+        <child>
+          <object class="AdwShortcutsItem">
+            <property name="title" translatable="yes">Stop the Adhan</property>
+            <property name="accelerator">&lt;Control&gt;period</property>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>
