@@ -6,6 +6,12 @@ All notable changes to this project are recorded here. The format follows
 
 ## [Unreleased]
 
+### Fixed
+
+- The autostart entry written where there is no background portal now
+  carries the launcher's full path, so starting at login works when the
+  install prefix is not on the session's PATH.
+
 ### Changed
 
 - The Flatpak no longer asks to talk to logind on the system bus. It was

@@ -7,13 +7,23 @@
 
 import Gio from 'gi://Gio';
 import GLib from 'gi://GLib';
-import { APP_ID } from './paths.js';
+import { programPath } from 'system';
+import { APP_ID, inFlatpak } from './paths.js';
 
 const AUTOSTART_DIR = GLib.build_filenamev([GLib.get_user_config_dir(), 'autostart']);
 const AUTOSTART_FILE = GLib.build_filenamev([AUTOSTART_DIR, `${APP_ID}.desktop`]);
 
-function inFlatpak() {
-    return GLib.getenv('FLATPAK_ID') !== null || GLib.file_test('/.flatpak-info', GLib.FileTest.EXISTS);
+// What to run at login. Inside Flatpak the portal wants the command name and
+// prefixes `flatpak run` itself. Outside, the launcher's full path: a bare
+// name only works if the bin directory is on the session's PATH at login,
+// which ~/.local/bin, the prefix the README suggests, often is not.
+function launcher() {
+    return inFlatpak() || !programPath ? APP_ID : programPath;
+}
+
+// Desktop-entry quoting, for the one argument that could hold a space.
+function quoteExec(arg) {
+    return /[\s"'\\`$]/.test(arg) ? `"${arg.replace(/[\\"`$]/g, '\\$&')}"` : arg;
 }
 
 async function viaPortal(enable) {
@@ -24,7 +34,7 @@ async function viaPortal(enable) {
     const ok = await portal.request_background(null,
         // Translators: shown by the system when it asks whether the app may run in the background
         _('Salah plays the adhan and sends reminders at prayer times, even while its window is closed.'),
-        [APP_ID, '--background'], flags, null);
+        [launcher(), '--background'], flags, null);
     if (!ok)
         throw new Error('The background request was refused');
 }
@@ -36,7 +46,7 @@ function writeAutostartFile() {
         'Type=Application',
         'Name=Salah',
         'Comment=Prayer times and the adhan',
-        `Exec=${APP_ID} --background`,
+        `Exec=${quoteExec(launcher())} --background`,
         `Icon=${APP_ID}`,
         'Terminal=false',
         'X-GNOME-Autostart-enabled=true',

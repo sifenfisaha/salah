@@ -10,6 +10,12 @@ import GLib from 'gi://GLib';
 export const APP_ID = 'io.github.sifenfisaha.Salah';
 export const RESOURCE_BASE = '/io/github/sifenfisaha/Salah';
 
+// Inside a Flatpak the portals are the only way to the host and its
+// settings, and the sandbox has its own copy of every XDG directory.
+export function inFlatpak() {
+    return GLib.getenv('FLATPAK_ID') !== null || GLib.file_test('/.flatpak-info', GLib.FileTest.EXISTS);
+}
+
 Gio._promisify(Gio.File.prototype, 'load_contents_async', 'load_contents_finish');
 Gio._promisify(Gio.File.prototype, 'replace_contents_bytes_async', 'replace_contents_finish');
 Gio._promisify(Gio.File.prototype, 'query_info_async', 'query_info_finish');
