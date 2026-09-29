@@ -1,0 +1,73 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  engine:
+    name: Engine tests and lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+
+      # Golden values against published timetables, ordering invariants across
+      # a year at four latitudes, formatting, announcement decisions. No
+      # network; the tests set their own time zone.
+      - name: Engine tests
+        run: node --test test/
+
+      - name: Lint
+        run: |
+          npm install --no-save --no-audit --no-fund eslint@9 @eslint/js@9
+          npx eslint src test
+
+  build:
+    name: Meson build and data checks
+    runs-on: ubuntu-latest
+    container: fedora:latest
+    steps:
+      - name: Install dependencies
+        run: |
+          dnf install -y --setopt=install_weak_deps=False \
+            meson ninja-build gettext git nodejs \
+            gjs-devel gtk4-devel libadwaita-devel gstreamer1-devel \
+            libsoup3-devel libportal-devel glib2-devel \
+            desktop-file-utils appstream
+
+      - uses: actions/checkout@v4
+
+      # The desktop file, the AppStream data and the schema are validated as
+      # meson tests, and the engine tests run again through meson so the
+      # wiring that contributors use locally is what CI checks.
+      - name: Build and test
+        run: |
+          meson setup _build
+          meson compile -C _build
+          meson test -C _build --print-errorlogs
+
+      - name: Translation template
+        run: meson compile -C _build io.github.sifenfisaha.Salah-pot
+
+      - name: Install
+        run: DESTDIR=$PWD/_install meson install -C _build
+
+  flatpak:
+    name: Flatpak
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/flathub-infra/flatpak-github-actions:gnome-49
+      options: --privileged
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: flathub-infra/flatpak-github-actions/flatpak-builder@v6
+        with:
+          bundle: salah.flatpak
+          manifest-path: io.github.sifenfisaha.Salah.json
+          cache-key: flatpak-builder-${{ github.sha }}

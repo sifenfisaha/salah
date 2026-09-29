@@ -1,0 +1,38 @@
+name: Bug report
+description: Something in the window, the notifications, or the adhan is wrong
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: What you did, what you expected, and what happened instead.
+    validations:
+      required: true
+  - type: input
+    id: versions
+    attributes:
+      label: Salah version and how it was installed
+      description: "`io.github.sifenfisaha.Salah --version`, and whether it is the Flatpak, a distribution package, or a meson install."
+      placeholder: "1.0.0, Flatpak"
+    validations:
+      required: true
+  - type: input
+    id: desktop
+    attributes:
+      label: Desktop
+      description: The desktop and its version, such as GNOME 49 on Fedora 43.
+    validations:
+      required: true
+  - type: textarea
+    id: settings
+    attributes:
+      label: Settings
+      description: The output of `gsettings list-recursively io.github.sifenfisaha.Salah`, minus anything you would rather not share.
+      render: text
+  - type: textarea
+    id: log
+    attributes:
+      label: Log
+      description: "Anything the log says about the app: `journalctl --user -b | grep -i salah`, or the terminal it was started from."
+      render: text
