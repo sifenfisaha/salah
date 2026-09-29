@@ -24,10 +24,10 @@ methods, and the same golden-value tests.
 ### Flatpak
 
 A Flathub listing is planned. Until it lands, build the Flatpak from this
-repository — it needs the GNOME 49 runtime and SDK:
+repository — it needs the GNOME 51 runtime and SDK:
 
 ```bash
-flatpak install flathub org.gnome.Platform//49 org.gnome.Sdk//49
+flatpak install flathub org.gnome.Platform//51 org.gnome.Sdk//51
 flatpak-builder --user --install --force-clean _flatpak io.github.sifenfisaha.Salah.json
 flatpak run io.github.sifenfisaha.Salah
 ```
