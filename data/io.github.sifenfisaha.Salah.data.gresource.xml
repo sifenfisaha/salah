@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+  <gresource prefix="/io/github/sifenfisaha/Salah">
+    <file compressed="true">style.css</file>
+    <file compressed="true" preprocess="xml-stripblanks">ui/window.ui</file>
+    <file compressed="true" preprocess="xml-stripblanks">ui/preferences.ui</file>
+    <file compressed="true" preprocess="xml-stripblanks">ui/location-dialog.ui</file>
+    <file compressed="true" preprocess="xml-stripblanks">ui/shortcuts.ui</file>
+    <file alias="adhan.ogg">adhan.ogg</file>
+  </gresource>
+  <gresource prefix="/io/github/sifenfisaha/Salah/icons/scalable/actions">
+    <file preprocess="xml-stripblanks" alias="salah-fajr-symbolic.svg">symbolic/salah-fajr-symbolic.svg</file>
+    <file preprocess="xml-stripblanks" alias="salah-sunrise-symbolic.svg">symbolic/salah-sunrise-symbolic.svg</file>
+    <file preprocess="xml-stripblanks" alias="salah-dhuhr-symbolic.svg">symbolic/salah-dhuhr-symbolic.svg</file>
+    <file preprocess="xml-stripblanks" alias="salah-asr-symbolic.svg">symbolic/salah-asr-symbolic.svg</file>
+    <file preprocess="xml-stripblanks" alias="salah-maghrib-symbolic.svg">symbolic/salah-maghrib-symbolic.svg</file>
+    <file preprocess="xml-stripblanks" alias="salah-isha-symbolic.svg">symbolic/salah-isha-symbolic.svg</file>
+    <file preprocess="xml-stripblanks" alias="salah-mosque-symbolic.svg">symbolic/salah-mosque-symbolic.svg</file>
+    <file preprocess="xml-stripblanks" alias="salah-bell-symbolic.svg">symbolic/salah-bell-symbolic.svg</file>
+    <file preprocess="xml-stripblanks" alias="salah-bell-off-symbolic.svg">symbolic/salah-bell-off-symbolic.svg</file>
+    <file preprocess="xml-stripblanks" alias="salah-calendar-symbolic.svg">symbolic/salah-calendar-symbolic.svg</file>
+  </gresource>
+</gresources>

@@ -1,0 +1,22 @@
+[Desktop Entry]
+Name=Salah
+# Translators: the summary shown under the name in app grids and stores
+Comment=Prayer times and the adhan
+Exec=io.github.sifenfisaha.Salah
+Icon=io.github.sifenfisaha.Salah
+Terminal=false
+Type=Application
+Categories=GTK;GNOME;Utility;Clock;
+Keywords=salah;salat;prayer;adhan;azan;muslim;islam;hijri;qibla;fajr;maghrib;
+StartupNotify=true
+DBusActivatable=true
+X-GNOME-UsesNotifications=true
+Actions=stop;preferences;
+
+[Desktop Action stop]
+Name=Stop the adhan
+Exec=gapplication action io.github.sifenfisaha.Salah stop
+
+[Desktop Action preferences]
+Name=Preferences
+Exec=gapplication action io.github.sifenfisaha.Salah preferences

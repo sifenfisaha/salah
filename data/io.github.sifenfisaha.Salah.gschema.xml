@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist gettext-domain="io.github.sifenfisaha.Salah">
+
+  <!-- The published twilight-angle conventions. Ids match src/engine/prayer-times.js. -->
+  <enum id="io.github.sifenfisaha.Salah.Method">
+    <value nick="mwl" value="0"/>
+    <value nick="egypt" value="1"/>
+    <value nick="makkah" value="2"/>
+    <value nick="karachi" value="3"/>
+    <value nick="isna" value="4"/>
+    <value nick="moonsighting" value="5"/>
+    <value nick="turkey" value="6"/>
+    <value nick="singapore" value="7"/>
+    <value nick="gulf" value="8"/>
+    <value nick="dubai" value="9"/>
+    <value nick="kuwait" value="10"/>
+    <value nick="qatar" value="11"/>
+    <value nick="france" value="12"/>
+    <value nick="russia" value="13"/>
+    <value nick="tehran" value="14"/>
+    <value nick="jafari" value="15"/>
+  </enum>
+
+  <enum id="io.github.sifenfisaha.Salah.Madhab">
+    <value nick="standard" value="0"/>
+    <value nick="hanafi" value="1"/>
+  </enum>
+
+  <enum id="io.github.sifenfisaha.Salah.HighLatitudes">
+    <value nick="angle-based" value="0"/>
+    <value nick="night-middle" value="1"/>
+    <value nick="one-seventh" value="2"/>
+    <value nick="none" value="3"/>
+  </enum>
+
+  <enum id="io.github.sifenfisaha.Salah.ClockFormat">
+    <value nick="system" value="0"/>
+    <value nick="24h" value="1"/>
+    <value nick="12h" value="2"/>
+  </enum>
+
+  <enum id="io.github.sifenfisaha.Salah.Voice">
+    <value nick="madinah" value="0"/>
+    <value nick="makkah" value="1"/>
+    <value nick="aaqib-azeez" value="2"/>
+    <value nick="nigeria" value="3"/>
+    <value nick="bundled" value="4"/>
+    <value nick="custom" value="5"/>
+  </enum>
+
+  <schema id="io.github.sifenfisaha.Salah" path="/io/github/sifenfisaha/Salah/">
+
+    <!-- Location -->
+    <key name="has-location" type="b">
+      <default>false</default>
+      <summary>Whether a location has been set</summary>
+      <description>Until a location is set nothing is computed and nothing is announced.</description>
+    </key>
+    <key name="location-name" type="s">
+      <default>''</default>
+      <summary>Name of the location</summary>
+      <description>Free text shown in the window, such as a city and country. Not used for the computation.</description>
+    </key>
+    <key name="latitude" type="d">
+      <range min="-90" max="90"/>
+      <default>0</default>
+      <summary>Latitude in degrees</summary>
+    </key>
+    <key name="longitude" type="d">
+      <range min="-180" max="180"/>
+      <default>0</default>
+      <summary>Longitude in degrees</summary>
+    </key>
+
+    <!-- Calculation -->
+    <key name="method" enum="io.github.sifenfisaha.Salah.Method">
+      <default>'mwl'</default>
+      <summary>Calculation method</summary>
+      <description>Which authority's twilight angles are used for Fajr and Isha.</description>
+    </key>
+    <key name="madhab" enum="io.github.sifenfisaha.Salah.Madhab">
+      <default>'standard'</default>
+      <summary>Asr convention</summary>
+      <description>Standard is the Shafi'i, Maliki and Hanbali shadow ratio; Hanafi uses twice the object's height.</description>
+    </key>
+    <key name="high-latitudes" enum="io.github.sifenfisaha.Salah.HighLatitudes">
+      <default>'angle-based'</default>
+      <summary>High-latitude rule</summary>
+      <description>How Fajr and Isha are placed on nights when the sun never reaches their twilight angle.</description>
+    </key>
+    <key name="tune-fajr" type="i">
+      <range min="-60" max="60"/>
+      <default>0</default>
+      <summary>Fajr correction in minutes</summary>
+    </key>
+    <key name="tune-sunrise" type="i">
+      <range min="-60" max="60"/>
+      <default>0</default>
+      <summary>Sunrise correction in minutes</summary>
+    </key>
+    <key name="tune-dhuhr" type="i">
+      <range min="-60" max="60"/>
+      <default>0</default>
+      <summary>Dhuhr correction in minutes</summary>
+    </key>
+    <key name="tune-asr" type="i">
+      <range min="-60" max="60"/>
+      <default>0</default>
+      <summary>Asr correction in minutes</summary>
+    </key>
+    <key name="tune-maghrib" type="i">
+      <range min="-60" max="60"/>
+      <default>0</default>
+      <summary>Maghrib correction in minutes</summary>
+    </key>
+    <key name="tune-isha" type="i">
+      <range min="-60" max="60"/>
+      <default>0</default>
+      <summary>Isha correction in minutes</summary>
+    </key>
+
+    <!-- Adhan and notifications -->
+    <key name="notifications" type="b">
+      <default>true</default>
+      <summary>Send a notification at each prayer</summary>
+    </key>
+    <key name="reminder-minutes" type="i">
+      <range min="0" max="60"/>
+      <default>10</default>
+      <summary>Minutes before a prayer to send a reminder</summary>
+      <description>Zero disables the reminder.</description>
+    </key>
+    <key name="play-adhan" type="b">
+      <default>true</default>
+      <summary>Play the adhan at each prayer</summary>
+    </key>
+    <key name="adhan-fajr" type="b">
+      <default>true</default>
+      <summary>Play the adhan for Fajr</summary>
+    </key>
+    <key name="adhan-dhuhr" type="b">
+      <default>true</default>
+      <summary>Play the adhan for Dhuhr</summary>
+    </key>
+    <key name="adhan-asr" type="b">
+      <default>true</default>
+      <summary>Play the adhan for Asr</summary>
+    </key>
+    <key name="adhan-maghrib" type="b">
+      <default>true</default>
+      <summary>Play the adhan for Maghrib</summary>
+    </key>
+    <key name="adhan-isha" type="b">
+      <default>true</default>
+      <summary>Play the adhan for Isha</summary>
+    </key>
+    <key name="voice" enum="io.github.sifenfisaha.Salah.Voice">
+      <default>'madinah'</default>
+      <summary>Which recording of the adhan plays</summary>
+      <description>Every voice except the bundled recording and a custom file is fetched from Wikimedia Commons the first time it is chosen.</description>
+    </key>
+    <key name="custom-adhan-file" type="s">
+      <default>''</default>
+      <summary>Path of a recording of your own</summary>
+      <description>Played when the voice is set to custom. Anything GStreamer can decode.</description>
+    </key>
+    <key name="volume" type="i">
+      <range min="0" max="150"/>
+      <default>75</default>
+      <summary>Playback volume in percent</summary>
+      <description>Above 100 amplifies the recording.</description>
+    </key>
+
+    <!-- Calendar and display -->
+    <key name="hijri-sync" type="b">
+      <default>true</default>
+      <summary>Correct the Hijri date against Umm al-Qura once a day</summary>
+    </key>
+    <key name="hijri-offset" type="i">
+      <range min="-2" max="2"/>
+      <default>0</default>
+      <summary>Your own shift of the Hijri date, in days</summary>
+    </key>
+    <key name="hijri-auto-offset" type="i">
+      <range min="-3" max="3"/>
+      <default>0</default>
+      <summary>The correction learned from Umm al-Qura, in days</summary>
+      <description>Maintained by the app. Kept apart from hijri-offset so a sync never overwrites a deliberate choice.</description>
+    </key>
+    <key name="clock-format" enum="io.github.sifenfisaha.Salah.ClockFormat">
+      <default>'system'</default>
+      <summary>12 or 24 hour clock</summary>
+      <description>System follows the desktop's clock format.</description>
+    </key>
+    <key name="show-seconds" type="b">
+      <default>true</default>
+      <summary>Count seconds in the countdown</summary>
+    </key>
+
+    <!-- Behaviour -->
+    <key name="run-in-background" type="b">
+      <default>true</default>
+      <summary>Keep running when the window is closed</summary>
+      <description>Needed for the adhan and the notifications to fire while the window is closed. Also asks to start at login.</description>
+    </key>
+
+    <!-- Window -->
+    <key name="window-width" type="i">
+      <default>440</default>
+      <summary>Window width</summary>
+    </key>
+    <key name="window-height" type="i">
+      <default>780</default>
+      <summary>Window height</summary>
+    </key>
+    <key name="window-maximized" type="b">
+      <default>false</default>
+      <summary>Whether the window is maximized</summary>
+    </key>
+  </schema>
+</schemalist>

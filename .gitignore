@@ -1,0 +1,20 @@
+# Build trees
+_build/
+build/
+builddir/
+.flatpak-builder/
+.flatpak/
+*.flatpak
+
+# Node, only used for the engine tests and lint
+node_modules/
+package-lock.json
+
+# Editors
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# Generated translation template
+po/*.pot

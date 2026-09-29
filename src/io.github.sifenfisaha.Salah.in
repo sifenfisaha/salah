@@ -1,0 +1,19 @@
+#!@GJS@ -m
+
+// The launcher meson installs to @bindir@. It registers the package with
+// gjs's loader, which finds the gresources under the prefix when installed and
+// under MESON_BUILD_ROOT inside `meson devenv`, then hands over to main.js.
+
+import { exit, programArgs, programInvocationName } from 'system';
+
+imports.package.init({
+    name: '@PACKAGE_NAME@',
+    version: '@PACKAGE_VERSION@',
+    prefix: '@prefix@',
+    libdir: '@libdir@',
+    datadir: '@datadir@',
+});
+
+const { main } = await import('resource:///io/github/sifenfisaha/Salah/js/main.js');
+const exitCode = await main([programInvocationName, ...programArgs]);
+exit(exitCode);

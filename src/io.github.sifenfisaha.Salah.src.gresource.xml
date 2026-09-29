@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+  <gresource prefix="/io/github/sifenfisaha/Salah/js">
+    <file>main.js</file>
+    <file>application.js</file>
+    <file>engine/prayer-times.js</file>
+    <file>engine/hijri.js</file>
+    <file>engine/voices.js</file>
+    <file>engine/day.js</file>
+    <file>services/util.js</file>
+    <file>services/settings.js</file>
+    <file>services/paths.js</file>
+    <file>services/network.js</file>
+    <file>services/player.js</file>
+    <file>services/notifier.js</file>
+    <file>services/voice-store.js</file>
+    <file>services/location.js</file>
+    <file>services/announcer.js</file>
+    <file>services/background.js</file>
+    <file>ui/window.js</file>
+    <file>ui/ring.js</file>
+    <file>ui/prayer-row.js</file>
+    <file>ui/preferences.js</file>
+    <file>ui/location-dialog.js</file>
+  </gresource>
+</gresources>

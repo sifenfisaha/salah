@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2026 sifenfisaha -->
+<component type="desktop-application">
+  <id>io.github.sifenfisaha.Salah</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>MIT</project_license>
+
+  <name>Salah</name>
+  <summary>Prayer times and the adhan</summary>
+
+  <developer id="io.github.sifenfisaha">
+    <name translate="no">sifenfisaha</name>
+  </developer>
+
+  <description>
+    <p>
+      Salah shows the next prayer, a live countdown, and the whole day at a
+      glance: every prayer with its Arabic name, the Hijri date, and the
+      derived times that no timetable prints but everyone eventually wants
+      — Imsak, Duha, Islamic midnight, and the last third of the night.
+    </p>
+    <p>
+      At each prayer you get a notification and, unless you have turned it
+      off for that prayer, the adhan. Choose a live recording from Madinah
+      or Makkah, a studio recitation, or a file of your own.
+    </p>
+    <ul>
+      <li>Sixteen calculation methods, both Asr conventions, four high-latitude rules, and per-prayer fine tuning</li>
+      <li>Times are computed on your device from the position of the sun — no account, no API, and it keeps working offline</li>
+      <li>A Hijri date that corrects itself against Umm al-Qura once a day, with a manual shift for local sightings</li>
+      <li>Keeps counting down and calling the adhan with the window closed, and can start at login</li>
+    </ul>
+  </description>
+
+  <launchable type="desktop-id">io.github.sifenfisaha.Salah.desktop</launchable>
+
+  <url type="homepage">https://github.com/sifenfisaha/salah</url>
+  <url type="bugtracker">https://github.com/sifenfisaha/salah/issues</url>
+  <url type="vcs-browser">https://github.com/sifenfisaha/salah</url>
+  <url type="contribute">https://github.com/sifenfisaha/salah/blob/main/CONTRIBUTING.md</url>
+
+  <translation type="gettext">io.github.sifenfisaha.Salah</translation>
+
+  <branding>
+    <color type="primary" scheme_preference="light">#8ff0a4</color>
+    <color type="primary" scheme_preference="dark">#1f6f4a</color>
+  </branding>
+
+  <screenshots>
+    <screenshot type="default">
+      <image>https://raw.githubusercontent.com/sifenfisaha/salah/main/docs/screenshots/day.png</image>
+      <caption>The day: what is next, how long is left, and every prayer with its bell</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/sifenfisaha/salah/main/docs/screenshots/preferences.png</image>
+      <caption>Calculation method, Asr convention, and fine tuning</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/sifenfisaha/salah/main/docs/screenshots/adhan.png</image>
+      <caption>The voice of the adhan, the volume, and the reminders</caption>
+    </screenshot>
+  </screenshots>
+
+  <content_rating type="oars-1.1"/>
+
+  <requires>
+    <display_length compare="ge">360</display_length>
+  </requires>
+  <supports>
+    <control>keyboard</control>
+    <control>pointing</control>
+    <control>touch</control>
+  </supports>
+
+  <releases>
+    <release version="1.0.0" date="2026-09-29">
+      <description>
+        <p>First release.</p>
+        <ul>
+          <li>The day view: next prayer, live countdown, progress ring, all six times with their Arabic names, the Hijri date, and the derived times</li>
+          <li>The adhan and a notification at each prayer, a heads-up reminder, and a bell per prayer</li>
+          <li>A choice of recordings, fetched on request from Wikimedia Commons, or a file of your own</li>
+          <li>Sixteen calculation methods, both Asr conventions, four high-latitude rules, and per-prayer fine tuning</li>
+          <li>Location from a city search, the system location service, or an IP lookup</li>
+          <li>Runs in the background and can start at login</li>
+        </ul>
+      </description>
+    </release>
+  </releases>
+</component>
