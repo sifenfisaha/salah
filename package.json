@@ -1,0 +1,14 @@
+{
+  "name": "salah",
+  "private": true,
+  "type": "module",
+  "description": "Engine tests and lint for the Salah GNOME app. The app itself is built with meson.",
+  "scripts": {
+    "test": "node --test test/",
+    "lint": "eslint src test"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9",
+    "eslint": "^9"
+  }
+}
