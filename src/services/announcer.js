@@ -12,7 +12,7 @@ import GLib from 'gi://GLib';
 import GObject from 'gi://GObject';
 
 import * as Day from '../engine/day.js';
-import { readConfig, getInterfaceSettings } from './settings.js';
+import { readConfig, watchSystemClockFormat } from './settings.js';
 import { announcedFile, stateFile, readText, writeText } from './paths.js';
 import { fetchText } from './network.js';
 import { notifyPrayer, notifyReminder } from './notifier.js';
@@ -49,7 +49,7 @@ export const Announcer = GObject.registerClass({
         this._hijriSyncing = false;
 
         this._settings.connect('changed', (_s, key) => this._onSettingChanged(key));
-        getInterfaceSettings()?.connect('changed::clock-format', () => this._invalidate());
+        watchSystemClockFormat(() => this._invalidate());
         this._player.connect('failed', (_p, message) => this.emit('notice', message));
     }
 

@@ -143,6 +143,10 @@ is wrong.
   `replace_contents_bytes_async` and `replace_contents_finish`.
 - **GNotification buttons need `app.` actions**, and the fallback
   freedesktop backend used outside GNOME delivers them the same way.
+- **GSettings inside a Flatpak is the sandbox's own copy.** Reading
+  `org.gnome.desktop.interface` there gives the schema default, never the
+  host's value; the Settings portal is what reflects the desktop, and
+  `services/settings.js` asks it when sandboxed.
 - **The window ticks once a second while open.** Setting a label to the text
   it already has is a no-op in GTK, so repainting the whole day every second
   costs nothing measurable; do not add caching for it.

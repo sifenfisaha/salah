@@ -8,6 +8,9 @@ All notable changes to this project are recorded here. The format follows
 
 ### Fixed
 
+- Inside a Flatpak, *Follow the System* now reads the desktop's clock format
+  through the Settings portal, and follows it when it changes. The sandbox's
+  own copy of the setting, which it read before, always said 24-hour.
 - The autostart entry written where there is no background portal now
   carries the launcher's full path, so starting at login works when the
   install prefix is not on the session's PATH.
