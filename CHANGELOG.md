@@ -6,6 +6,25 @@ All notable changes to this project are recorded here. The format follows
 
 ## [Unreleased]
 
+## [1.0.1] - 2026-09-29
+
+### Fixed
+
+- Preferences, Location, Keyboard Shortcuts and About opened on a window
+  nobody could see while the app was running in the background, whether from
+  the desktop entry's actions or from `gapplication action`. The window is
+  shown first now.
+- *Count Seconds* did nothing. With it on, the time to the next prayer now
+  counts down as a running clock; with it off, it reads as before.
+- *Use System Location* is left out of the location dialog when libportal is
+  not installed, instead of being offered and failing.
+
+### Changed
+
+- The Flatpak is built on the GNOME 51 runtime.
+- The README lists what a build actually needs: the development packages
+  meson checks for, and the introspection data on Debian and Ubuntu.
+
 ## [1.0.0] - 2026-09-29
 
 The first release, a port of the

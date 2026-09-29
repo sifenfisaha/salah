@@ -73,6 +73,17 @@
   </supports>
 
   <releases>
+    <release version="1.0.1" date="2026-09-29">
+      <description>
+        <p>Fixes for the first release.</p>
+        <ul>
+          <li>Preferences, Location, Keyboard Shortcuts and About now bring the window up first when the app is running in the background</li>
+          <li>Count Seconds now counts seconds: with it on, the time to the next prayer is a running clock</li>
+          <li>Use System Location is left out where libportal is not installed</li>
+          <li>Built on the GNOME 51 runtime</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.0.0" date="2026-09-29">
       <description>
         <p>First release.</p>
