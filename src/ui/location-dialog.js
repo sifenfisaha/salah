@@ -9,7 +9,7 @@ import GObject from 'gi://GObject';
 
 import { RESOURCE_BASE } from '../services/paths.js';
 import { writeLocation } from '../services/settings.js';
-import { searchCities, lookupByIp, systemLocation } from '../services/location.js';
+import { searchCities, lookupByIp, systemLocation, portalAvailable } from '../services/location.js';
 import { format, isCancelled } from '../services/util.js';
 
 const DEBOUNCE_MS = 320;
@@ -34,6 +34,7 @@ export const LocationDialog = GObject.registerClass({
         this._results.connect('row-activated', (_list, row) => this._choose(row._entry));
         this._system_row.connect('activated', () => this._useSystem().catch(logError));
         this._ip_row.connect('activated', () => this._useIp().catch(logError));
+        this._system_row.visible = portalAvailable();
         this.connect('closed', () => this._cancel());
     }
 

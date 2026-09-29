@@ -7,6 +7,18 @@ import GLib from 'gi://GLib';
 import * as Day from '../engine/day.js';
 import { fetchText } from './network.js';
 
+// Whether libportal's bindings are installed at all. Without them there is
+// no location portal to ask, and the dialog leaves that option out rather
+// than offering one that can only fail.
+export function portalAvailable() {
+    try {
+        const { Xdp, XdpGtk4 } = imports.gi;
+        return Boolean(Xdp && XdpGtk4);
+    } catch {
+        return false;
+    }
+}
+
 export async function searchCities(query, cancellable = null) {
     const url = 'https://geocoding-api.open-meteo.com/v1/search?count=8&language=en&format=json&name=' +
         encodeURIComponent(query);
