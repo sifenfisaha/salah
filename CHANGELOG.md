@@ -6,6 +6,8 @@ All notable changes to this project are recorded here. The format follows
 
 ## [Unreleased]
 
+## [1.0.2] - 2026-09-29
+
 ### Fixed
 
 - Inside a Flatpak, *Follow the System* now reads the desktop's clock format

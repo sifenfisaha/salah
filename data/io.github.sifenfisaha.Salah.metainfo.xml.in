@@ -73,6 +73,16 @@
   </supports>
 
   <releases>
+    <release version="1.0.2" date="2026-09-29">
+      <description>
+        <p>Two fixes for the Flatpak and one for installs from source.</p>
+        <ul>
+          <li>Inside the Flatpak, Follow the System now reads the desktop's clock format through the Settings portal and follows it when it changes</li>
+          <li>The Flatpak no longer asks to talk to logind on the system bus</li>
+          <li>The autostart entry written where there is no background portal now carries the launcher's full path</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.0.1" date="2026-09-29">
       <description>
         <p>Fixes for the first release.</p>
