@@ -5,7 +5,7 @@
 // Where the two references disagreed the value here sits between them; where
 // they agreed it matches both exactly.
 //
-//   node --test test/
+//   npm test          (node --test 'test/**/*.test.js')
 //
 // No network and no dependencies beyond node itself: the point of the file
 // is to catch a change to the astronomy that nobody meant to make.

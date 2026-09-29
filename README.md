@@ -237,8 +237,8 @@ po/                                   translations
 docs/                                 screenshots and ARCHITECTURE.md
 ```
 
-The engine never imports anything from GNOME, which is what lets `node --test`
-run it directly and keeps the same code shared with the Omarchy plugin.
+The engine never imports anything from GNOME, which is what lets `npm test`
+run it directly under node and keeps the same code shared with the Omarchy plugin.
 
 ## Contributing
 

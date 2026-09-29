@@ -60,7 +60,7 @@ afterwards.
 
 ```bash
 meson test -C _build     # the schema, the desktop file, the AppStream data, and the engine tests
-npm test                 # the engine tests on their own, no build needed
+npm test                 # the engine tests on their own, no build needed (node --test 'test/**/*.test.js')
 npm install && npm run lint   # eslint over src/ and test/
 ```
 

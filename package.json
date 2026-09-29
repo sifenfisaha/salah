@@ -4,7 +4,7 @@
   "type": "module",
   "description": "Engine tests and lint for the Salah GNOME app. The app itself is built with meson.",
   "scripts": {
-    "test": "node --test test/",
+    "test": "node --test 'test/**/*.test.js'",
     "lint": "eslint src test"
   },
   "devDependencies": {

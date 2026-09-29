@@ -31,7 +31,7 @@ run_command('chmod', '+x', meson.current_build_dir() / app_id, check: false)
 node = find_program('node', required: false)
 if node.found()
   test('Engine', node,
-    args: ['--test', meson.project_source_root() / 'test'],
+    args: ['--test', 'test/**/*.test.js'],
     workdir: meson.project_source_root(),
   )
 endif
